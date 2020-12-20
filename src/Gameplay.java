@@ -26,6 +26,7 @@ class Gameplay extends JPanel implements ActionListener, KeyListener{
 	private ImageIcon downmouth;
 	
 	private int lengthofsnake = 3;
+	private int lastmove= 0 ;
 	
 	private Timer timer;
 	private int delay = 100;
@@ -240,7 +241,7 @@ class Gameplay extends JPanel implements ActionListener, KeyListener{
 			lengthofsnake=3;
 			repaint();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT ){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT && lastmove != KeyEvent.VK_LEFT && lastmove != KeyEvent.VK_RIGHT){
 			moves++;
 			right=true;
 			left=false;
@@ -254,7 +255,7 @@ class Gameplay extends JPanel implements ActionListener, KeyListener{
 				right=false;
 			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		if(e.getKeyCode() == KeyEvent.VK_LEFT && lastmove != KeyEvent.VK_RIGHT && lastmove != KeyEvent.VK_LEFT){
 			moves++;
 			right=false;
 			left=true;
@@ -268,7 +269,7 @@ class Gameplay extends JPanel implements ActionListener, KeyListener{
 				left=false;
 			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_UP){
+		if(e.getKeyCode() == KeyEvent.VK_UP && lastmove != KeyEvent.VK_DOWN&& lastmove != KeyEvent.VK_UP){
 			moves++;
 			right=false;
 			left=false;
@@ -282,7 +283,7 @@ class Gameplay extends JPanel implements ActionListener, KeyListener{
 				up=false;
 			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+		if(e.getKeyCode() == KeyEvent.VK_DOWN && lastmove != KeyEvent.VK_UP && lastmove != KeyEvent.VK_DOWN){
 			moves++;
 			right=false;
 			left=false;
@@ -297,6 +298,7 @@ class Gameplay extends JPanel implements ActionListener, KeyListener{
 			}
 		}
 		
+		lastmove = e.getKeyCode();
 	}
 	public void keyTyped(KeyEvent e){
 		
